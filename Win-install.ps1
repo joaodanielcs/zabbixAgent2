@@ -1,6 +1,3 @@
-if (-not $s) {
-    $s = Read-Host "Qual o IP do servidor?"
-}
 function server {
     param (
         [string]$s  # IP do servidor Zabbix passado como argumento
@@ -62,4 +59,8 @@ function server {
             Remove-Item -Path $env:TEMP -Recurse -Force -ErrorAction SilentlyContinue
         }
     }
+}
+if (-not $s) {
+    $s = Read-Host "Qual o IP do servidor?"
+    server $s
 }
