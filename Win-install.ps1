@@ -4,7 +4,6 @@ function server {
     )
 
     if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-        #Start-Process powershell "-ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
         Start-Process powershell "-ExecutionPolicy Bypass -Command `\"server '$s'`\"" -Verb RunAs
         exit
     }
@@ -61,7 +60,6 @@ function server {
     }
 }
 if (-not $s) {
-    $s = Read-Host "Qual o IP do servidor?"
+    $s = Read-Host "Qual o IP do Zabbix Server?"
     server $s
 }
-write-host "Server: "$s
