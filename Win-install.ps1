@@ -1,8 +1,8 @@
-param (
-    [string]$s  # IP do servidor Zabbix passado como argumento
-)
-
 function server {
+    param (
+        [string]$s  # IP do servidor Zabbix passado como argumento
+    )
+
     if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
         Start-Process powershell "-ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
         exit
