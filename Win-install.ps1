@@ -7,7 +7,7 @@ function server {
         Start-Process powershell "-ExecutionPolicy Bypass -Command `\"server '$s'`\"" -Verb RunAs
         exit
     }
-
+    if (-not ($s)) { $s = Read-Host "Qual o IP do Zabbix Server?" }
     if (-not (Get-Service -Name "Zabbix Agent 2" -ErrorAction SilentlyContinue)) {
 
         $u = "https://cdn.zabbix.com/zabbix/binaries/stable/7.4/7.4.2/zabbix_agent2-7.4.2-windows-amd64-openssl-static.zip"
