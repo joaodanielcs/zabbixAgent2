@@ -9,4 +9,7 @@ Debian 12<br>
 Ubuntu 18.04<br>
 <code>bash -c "$(wget -qLO - jdcs-za2u18.myftp.org)" "IP_Do_Zabbix_Server"</code>
 
+Proxmox VE 8.4.12<br>
+<code>bash -c "$(wget -qLO - jdcs-za2p8.myftp.org)" "IP_Do_Zabbix_Server"</code>
+
 📌 Substitua <code>IP_Do_Zabbix_Server</code> pelo IP real do seu servidor Zabbix.
