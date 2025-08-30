@@ -1,3 +1,6 @@
+if (-not $s) {
+    $s = Read-Host "Qual o IP do servidor?"
+}
 function server {
     param (
         [string]$s  # IP do servidor Zabbix passado como argumento
@@ -7,9 +10,6 @@ function server {
         #Start-Process powershell "-ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
         Start-Process powershell "-ExecutionPolicy Bypass -Command `\"server '$s'`\"" -Verb RunAs
         exit
-    }
-    if (-not $s) {
-        $s = Read-Host "Qual o IP do servidor?"
     }
 
     if (-not (Get-Service -Name "Zabbix Agent 2" -ErrorAction SilentlyContinue)) {
@@ -50,8 +50,7 @@ function server {
         & "$p\bin\zabbix_agent2.exe" --config $c --install > $null 2>&1
         Start-Service "Zabbix Agent 2" -ErrorAction SilentlyContinue
         Set-Service "Zabbix Agent 2" -StartupType Automatic
-        #Start-Process sc.exe -ArgumentList 'failure', '"Zabbix Agent 2"', 'reset= 86400', 'actions= restart/5000/restart/5000/restart/5000' -NoNewWindow -Wait
-        Start-Process cmd.exe -ArgumentList '/c', 'sc.exe failure "Zabbix Agent 2" reset= 86400 actions= restart/5000/restart/5000/restart/5000 >nul 2>&1' -NoNewWindow -Wait
+        Start-Process sc.exe -ArgumentList 'failure', '"Zabbix Agent 2"', 'reset= 86400', 'actions= restart/5000/restart/5000/restart/5000' -NoNewWindow -Wait
         
         # Criar regra de firewall (se não existir)
         if (-not (Get-NetFirewallRule -DisplayName "Zabbix Agent2" -ErrorAction SilentlyContinue)) {
