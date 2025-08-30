@@ -64,3 +64,4 @@ if (-not $s) {
     $s = Read-Host "Qual o IP do servidor?"
     server $s
 }
+write-host "Server: "$s
