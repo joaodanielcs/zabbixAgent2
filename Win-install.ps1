@@ -50,6 +50,8 @@ function server {
         & "$p\bin\zabbix_agent2.exe" --config $c --install > $null 2>&1
         Start-Service "Zabbix Agent 2" -ErrorAction SilentlyContinue
         Set-Service "Zabbix Agent 2" -StartupType Automatic
+        Start-Process sc.exe -ArgumentList 'failure', '"Zabbix Agent 2"', 'reset= 86400', 'actions= restart/5000/restart/5000/restart/5000' -NoNewWindow -Wait
+        #sc.exe failure "Zabbix Agent 2" reset= 86400 actions= restart/5000/restart/5000/restart/5000
 
         # Criar regra de firewall (se não existir)
         if (-not (Get-NetFirewallRule -DisplayName "Zabbix Agent2" -ErrorAction SilentlyContinue)) {
