@@ -1,7 +1,16 @@
-apt update 
-apt install zabbix-agent2 -y
-sed -i "s/^Server=.*/Server=192.168.0.105/" /etc/zabbix/zabbix_agentd.conf
-sed -i "s/^ServerActive=.*/ServerActive=192.168.0.105/" /etc/zabbix/zabbix_agentd.conf
+#!/bin/bash
+
+IP="$1"
+[ -z "$IP" ] && read -p "Qual o IP do servidor Zabbix? " IP
+echo "🔄 Atualizando pacotes..."
+apt update -y > /dev/null 2>&1
+echo "📦 Instalando Zabbix Agent 2..."
+apt install zabbix-agent2 -y > /dev/null 2>&1
+echo "🔧 Configurando o Zabbix Agent 2..."
+sed -i "s/^Server=.*/Server=$IP/" /etc/zabbix/zabbix_agentd.conf
+sed -i "s/^ServerActive=.*/ServerActive=$IP/" /etc/zabbix/zabbix_agentd.conf
 sed -i "s/^Hostname=.*/Hostname=$(hostname)/" /etc/zabbix/zabbix_agentd.conf
-systemctl enable zabbix-agent
-systemctl restart zabbix-agent
+
+systemctl enable zabbix-agent > /dev/null 2>&1
+systemctl restart zabbix-agent > /dev/null 2>&1
+echo "✅ Instalação concluída."
