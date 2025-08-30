@@ -9,4 +9,4 @@ Debian 12<br>
 Ubuntu 18.04<br>
 <code>bash -c "$(wget -qLO - jdcs-za2u18.myftp.org)" "IP_Do_Zabbix_Server"</code>
 
-📌 Substitua  pelo IP real do seu servidor Zabbix.
+📌 Substitua <code>IP_Do_Zabbix_Server</code> pelo IP real do seu servidor Zabbix.
