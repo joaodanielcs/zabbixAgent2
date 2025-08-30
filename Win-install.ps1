@@ -17,6 +17,8 @@ Invoke-WebRequest $u -OutFile $z -ErrorAction SilentlyContinue
 
 # Parar serviço se já existir
 if (Get-Service -Name "Zabbix Agent 2" -ErrorAction SilentlyContinue) {
+    Stop-Service "Zabbix Agent 2" -ErrorAction SilentlyContinue
+    Start-Sleep -Seconds 2
     & "$p\bin\zabbix_agent2.exe" --config $c --uninstall > $null 2>&1
     Start-Sleep -Seconds 2
 }
