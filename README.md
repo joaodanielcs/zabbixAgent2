@@ -1,4 +1,4 @@
-🚀 Instalação do Zabbix Agent 2
+🚀 Instalação do Zabbix Agent 2![Logo do Zabbix](https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png)
 
 🪟 Windows <br>
 <code>irm jdcs-za2w.myftp.org | iex; server "<span style='color:green;'>IP_DO_Zabbix_Server</span>"</code>
