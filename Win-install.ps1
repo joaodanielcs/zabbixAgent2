@@ -59,7 +59,3 @@ function server {
         }
     }
 }
-if (-not $s) {
-    $s = Read-Host "Qual o IP do Zabbix Server?"
-    server $s
-}
