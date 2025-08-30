@@ -4,7 +4,8 @@ function server {
     )
 
     if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-        Start-Process powershell "-ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
+        #Start-Process powershell "-ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
+        Start-Process powershell "-ExecutionPolicy Bypass -Command `\"server '$s'`\"" -Verb RunAs
         exit
     }
     if (-not $s) {
